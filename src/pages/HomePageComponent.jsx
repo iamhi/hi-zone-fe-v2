@@ -16,6 +16,7 @@ const HomePageComponent = () => (
 	<div className="basic-page">
 		<div className="home-page">
 			<div className="home-page__container home-page__container--left">
+			
 				<TitleComponent />
 
 				<NavigationComponent />

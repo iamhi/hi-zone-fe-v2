@@ -16,7 +16,7 @@ const FormComponent = ({
 		if (formRef.current) {
 			formRef.current.focus();
 		}
-	}, [formRef.current]);
+	}, []);
 
 	return (
 		<form className={`form-component ${customCss}`} onSubmit={onSubmit} ref={formRef}>
@@ -34,7 +34,7 @@ const FormComponent = ({
 };
 
 FormComponent.propTypes = {
-	onSubmit: PropTypes.func,
+	onSubmit: PropTypes.func.isRequired,
 	children: PropTypes.node,
 	customCss: PropTypes.string,
 	formMessage: PropTypes.string,

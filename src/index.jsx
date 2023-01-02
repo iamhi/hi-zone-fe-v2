@@ -1,17 +1,18 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { store } from '@redux/store';
 import { Provider } from 'react-redux';
 
 import App from './App';
 
-ReactDOM.render(
-	(
+const root = createRoot(document.getElementById('app'));
+
+root.render(
+	<StrictMode>
 		<Provider store={store}>
 			<App />
 		</Provider>
-	),
-	document.getElementById('app')
+	</StrictMode>
 );

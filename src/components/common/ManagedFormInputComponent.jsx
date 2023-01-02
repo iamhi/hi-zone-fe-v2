@@ -10,7 +10,7 @@ const ManagedFormInputComponent = ({
 	placeholder,
 	type = 'text',
 	required = false,
-	value,
+	value = '',
 	label,
 	invalidMessage = '',
 }) => {

@@ -1,19 +1,27 @@
-// import { useDispatch } from 'react-redux';
-//
-// import { setUserData } from '@redux/slices/userDataSlice';
-// import { userLoginRequest, refreshTokenRequest } from '@services/authentication';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import PopupDisplayComponent from '@common-components/PopupDisplayComponent';
+import LoginFormComponent from '@components/LoginFormComponent';
+import { isUserLoggedIn } from '@redux/slices/userDataSlice';
 
 const UserControlComponent = () => {
-//	const dispatch = useDispatch();
-//
-//	refreshTokenRequest()
-//		.then(() => userLoginRequest()
-//			.then((data) => console.warn(data) || dispatch(setUserData(data)))
-//			.catch((err) => console.error(err)))
-//		.catch((err) => console.error(err));
-	console.warn('Placeholder');
+	const userLoggedIn = useSelector(isUserLoggedIn);
+
+	// Attempt to get new token from refresh
+	// Attempt to login with access token
+	// Create a timer that checks if the access token is still valid
+	// Or request new tokens every 15 mins
 	
-	return null;
+	if (userLoggedIn) {
+		return null;
+	}
+
+	return (
+		<PopupDisplayComponent>
+			<LoginFormComponent />
+		</PopupDisplayComponent>
+	);
 };
 
 export default UserControlComponent;
