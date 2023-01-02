@@ -9,138 +9,139 @@ const fse = require('fs-extra');
 const Dotenv = require('dotenv-webpack');
 
 const PACKAGE_PATHS = {
-    '@src': path.resolve(__dirname, 'src'),
-    '@assets': path.resolve(__dirname, 'src/assets'),
-    '@utility': path.resolve(__dirname, 'src/utility'),
-    '@components': path.resolve(__dirname, 'src/components'),
-    '@common-components': path.resolve(__dirname, 'src/components/common'),
-    '@page-components': path.resolve(__dirname, 'src/pages'),
-    '@services': path.resolve(__dirname, 'src/services'),
-    '@redux': path.resolve(__dirname, 'src/redux'),
-    modules: path.join(__dirname, 'node_modules'),
+	'@src': path.resolve(__dirname, 'src'),
+	'@generated': path.resolve(__dirname, 'generated'),
+	'@assets': path.resolve(__dirname, 'src/assets'),
+	'@utility': path.resolve(__dirname, 'src/utility'),
+	'@components': path.resolve(__dirname, 'src/components'),
+	'@common-components': path.resolve(__dirname, 'src/components/common'),
+	'@page-components': path.resolve(__dirname, 'src/pages'),
+	'@services': path.resolve(__dirname, 'src/services'),
+	'@redux': path.resolve(__dirname, 'src/redux'),
+	modules: path.join(__dirname, 'node_modules'),
 };
 
 class RunAfterCompile {
-  apply(compiler) {
-    compiler.hooks.done.tap('Copy images', function () {
+	apply(compiler) {
+		compiler.hooks.done.tap('Copy images', function () {
 			try {
 				fse.copySync('./src/assets/images', './dist/assets/images');
 			} catch (err) {
 				console.error(err);
 			}
-    });
-  }
+		});
+	}
 }
 
 let cssConfig = {
-  test: /\.css|less$/i,
-  use: ['css-loader', 'postcss-loader'],
+	test: /\.css|less$/i,
+	use: ['css-loader', 'postcss-loader'],
 };
 
 let config = {
-  resolve: {
-    alias: PACKAGE_PATHS,
-    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.css'],
-  },
-  entry: './src/index.jsx',
-  plugins: [
-    new Dotenv(),
+	resolve: {
+		alias: PACKAGE_PATHS,
+		extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.css'],
+	},
+	entry: './src/index.jsx',
+	plugins: [
+		new Dotenv(),
 	],
-  module: {
-    rules: [
-      cssConfig,
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
-      },
-    ],
-  },
+	module: {
+		rules: [
+			cssConfig,
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /(node_modules)/,
+				use: {
+					loader: 'babel-loader',
+				},
+			},
+			{
+				test: /\.(png|svg|jpg|gif)$/,
+				use: ['file-loader'],
+			},
+		],
+	},
 };
 
 if (currentTask == 'dev') {
-  cssConfig.use.unshift('style-loader');
+	cssConfig.use.unshift('style-loader');
 
-  config.devServer = {
-    historyApiFallback: true,
-    static: {
-      directory: path.join(__dirname, 'app'),
-    },
-    hot: true,
-    port: 3000,
-    host: '0.0.0.0',
-    client: {
-      logging: 'error',
-      overlay: {
-        errors: true,
-        warnings: false,
-      },
-    },
-  };
+	config.devServer = {
+		historyApiFallback: true,
+		static: {
+			directory: path.join(__dirname, 'app'),
+		},
+		hot: true,
+		port: 3000,
+		host: '0.0.0.0',
+		client: {
+			logging: 'error',
+			overlay: {
+				errors: true,
+				warnings: false,
+			},
+		},
+	};
 
-  config.mode = 'development';
-  config.devtool = 'inline-source-map';
-  config.plugins.push(
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      inject: true,
-    })
-  );
-  config.plugins.push(new ESLintPlugin({
-    extensions: ['js', 'jsx', 'ts', 'tsx'],
-    lintDirtyModulesOnly: false,
-  }));
+	config.mode = 'development';
+	config.devtool = 'inline-source-map';
+	config.plugins.push(
+		new HtmlWebpackPlugin({
+			template: './src/index.html',
+			filename: './index.html',
+			inject: true,
+		})
+	);
+	config.plugins.push(new ESLintPlugin({
+		extensions: ['js', 'jsx', 'ts', 'tsx'],
+		lintDirtyModulesOnly: false,
+	}));
 }
 
 if (currentTask == 'build' || currentTask === 'develop-build') {
-  cssConfig.use.unshift(MiniCssExtractPlugin.loader);
-  config.output = {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
-  };
-  config.mode = 'production';
-  config.optimization = {
-    splitChunks: { chunks: 'all' },
-    minimizer: [
-      new TerserPlugin(),
-    ],
-  };
+	cssConfig.use.unshift(MiniCssExtractPlugin.loader);
+	config.output = {
+		filename: '[name].[chunkhash].js',
+		chunkFilename: '[name].[chunkhash].js',
+		path: path.resolve(__dirname, 'dist')
+	};
+	config.mode = 'production';
+	config.optimization = {
+		splitChunks: { chunks: 'all' },
+		minimizer: [
+			new TerserPlugin(),
+		],
+	};
 
-  config.plugins.push(
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
-    new RunAfterCompile(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-      inject: true,
-    })
-  );
+	config.plugins.push(
+		new CleanWebpackPlugin(),
+		new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
+		new RunAfterCompile(),
+		new HtmlWebpackPlugin({
+			template: './src/index.html',
+			filename: './index.html',
+			minify: {
+				removeComments: true,
+				collapseWhitespace: true,
+				removeRedundantAttributes: true,
+				useShortDoctype: true,
+				removeEmptyAttributes: true,
+				removeStyleLinkTypeAttributes: true,
+				keepClosingSlash: true,
+				minifyJS: true,
+				minifyCSS: true,
+				minifyURLs: true,
+			},
+			inject: true,
+		})
+	);
 
-  if (currentTask === 'develop-build') {
-    config.devtool = 'source-map';
-    config.mode = 'development';
-  }
+	if (currentTask === 'develop-build') {
+		config.devtool = 'source-map';
+		config.mode = 'development';
+	}
 }
 
 module.exports = config;
