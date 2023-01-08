@@ -18,12 +18,13 @@ const PACKAGE_PATHS = {
 	'@page-components': path.resolve(__dirname, 'src/pages'),
 	'@services': path.resolve(__dirname, 'src/services'),
 	'@redux': path.resolve(__dirname, 'src/redux'),
+	'@authentication-v2': path.resolve(__dirname, 'generated/authentication-v2/src'),
 	modules: path.join(__dirname, 'node_modules'),
 };
 
 class RunAfterCompile {
 	apply(compiler) {
-		compiler.hooks.done.tap('Copy images', function () {
+		compiler.hooks.done.tap('Copy images', () => {
 			try {
 				fse.copySync('./src/assets/images', './dist/assets/images');
 			} catch (err) {
@@ -33,15 +34,20 @@ class RunAfterCompile {
 	}
 }
 
-let cssConfig = {
+const cssConfig = {
 	test: /\.css|less$/i,
 	use: ['css-loader', 'postcss-loader'],
 };
 
-let config = {
+const config = {
 	resolve: {
 		alias: PACKAGE_PATHS,
-		extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.css'],
+		extensions: ['.js',
+			'.json',
+			'.jsx',
+			'.ts',
+			'.tsx',
+			'.css'],
 	},
 	entry: './src/index.jsx',
 	plugins: [
@@ -95,7 +101,10 @@ if (currentTask == 'dev') {
 		})
 	);
 	config.plugins.push(new ESLintPlugin({
-		extensions: ['js', 'jsx', 'ts', 'tsx'],
+		extensions: ['js',
+			'jsx',
+			'ts',
+			'tsx'],
 		lintDirtyModulesOnly: false,
 	}));
 }
@@ -105,7 +114,7 @@ if (currentTask == 'build' || currentTask === 'develop-build') {
 	config.output = {
 		filename: '[name].[chunkhash].js',
 		chunkFilename: '[name].[chunkhash].js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
 	};
 	config.mode = 'production';
 	config.optimization = {
