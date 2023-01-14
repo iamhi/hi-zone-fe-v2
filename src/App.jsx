@@ -9,6 +9,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import HomePageComponent from '@page-components/HomePageComponent';
+import UserControlComponent from '@components/UserControlComponent';
 
 const App = () => (
 	<BrowserRouter>
@@ -17,6 +18,8 @@ const App = () => (
 				<HomePageComponent />
 			</div>
 		</div>
+
+		<UserControlComponent />
 	</BrowserRouter>
 );
 

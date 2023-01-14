@@ -6,7 +6,6 @@ import NavigationComponent from '@components/NavigationComponent';
 import MainRouteComponent from '@page-components/MainRouteComponent';
 import FooterComponent from '@components/FooterComponent';
 import SupportingApplicationComponent from '@components/SupportingApplicationComponent';
-import UserControlComponent from '@components/UserControlComponent';
 
 import {
 	MAIN_ROUTE,
@@ -33,8 +32,6 @@ const HomePageComponent = () => (
 			<div className="home-page__footer">
 				<FooterComponent />
 			</div>
-
-			<UserControlComponent />
 		</div>
 	</div>
 );

@@ -1,5 +1,5 @@
 export {
-	refreshTokensCall,
-	loginCall,
-	meTokenCall,
-} from './client-wrapper';
+	loginRequest,
+	meRequest,
+	refreshRequest,
+} from './requests';

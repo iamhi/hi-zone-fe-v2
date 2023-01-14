@@ -3,21 +3,32 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PopupDisplayComponent from '@common-components/PopupDisplayComponent';
 import LoginFormComponent from '@components/LoginFormComponent';
-import { isUserLoggedIn, userLoginAction, userLogoutAction } from '@redux/slices/userDataSlice';
-import { refreshTokensCall, meTokenCall } from '@services/authentication-v2';
+import { refreshRequest, meRequest } from '@services/authentication-v2';
+import {
+	isUserLoggedIn,
+	userLoginAction,
+	userLogoutAction,
+	shouldRefresh,
+	setRefreshAction,
+} from '@redux/slices/userDataSlice';
 
 const UserControlComponent = () => {
 	const dispatch = useDispatch();
 	const userLoggedIn = useSelector(isUserLoggedIn);
+	const refreshTokens = useSelector(shouldRefresh);
 	// Create a timer that checks if the access token is still valid
 	// Or request new tokens every 15 mins
 	useEffect(() => {
-		refreshTokensCall().then((_) => {
-			meTokenCall()
-				.then((response) => response.json())
-				.then((data) => dispatch(userLoginAction(data)));
-		}).catch((_) => dispatch(userLogoutAction()));
-	}, []);
+		if (refreshTokens) {
+			dispatch(setRefreshAction(false));
+
+			refreshRequest().then((_) => {
+				meRequest()
+					.then((response) => response.json())
+					.then((data) => dispatch(userLoginAction(data)));
+			}).catch((_) => dispatch(userLogoutAction()));
+		}
+	}, [dispatch, refreshTokens]);
 
 	if (userLoggedIn) {
 		return null;

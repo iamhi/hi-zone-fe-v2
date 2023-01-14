@@ -7,7 +7,7 @@ import FormSubmitComponent from '@common-components/FormSubmitComponent';
 import FormResetComponent from '@common-components/FormResetComponent';
 import FormButtonGroupComponent from '@common-components/FormButtonGroupComponent';
 import { userLoginAction } from '@redux/slices/userDataSlice';
-import { loginCall } from '@services/authentication-v2';
+import { loginRequest } from '@services/authentication-v2';
 
 const LoginFormComponent = () => {
 	const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const LoginFormComponent = () => {
 		const formData = new FormData(e.target);
 		const requestData = Object.fromEntries(formData);
 		
-		const response = await loginCall(requestData);
-
-		dispatch(userLoginAction(response));
+		loginRequest(requestData)
+			.then((response) => response.json())
+			.then((data) => dispatch(userLoginAction(data)));
 	};
 
 	return (
