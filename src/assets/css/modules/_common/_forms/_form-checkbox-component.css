@@ -1,0 +1,11 @@
+.form-checkbox-component__label {
+	display: flex;	
+	justify-content: space-around;
+	align-items: center;
+}
+
+.form-checkbox-component__input {
+	display: flex;
+	margin-top: 0;
+	transform: scale(1.5);
+}
