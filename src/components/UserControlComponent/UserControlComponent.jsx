@@ -12,6 +12,9 @@ import {
 	shouldRefresh,
 	setRefreshAction,
 } from '@redux/slices/userDataSlice';
+import {
+	setUserPreferenceAction,
+} from '@redux/slices/userPreferenceSlice';
 
 const UserControlComponent = () => {
 	const dispatch = useDispatch();
@@ -31,8 +34,15 @@ const UserControlComponent = () => {
 		}
 	}, [dispatch, refreshTokens]);
 
+	useEffect(() => {
+		if (userLoggedIn) {
+			fetchUserPreference()
+				.then((response) => response.json())
+				.then((data) => dispatch(setUserPreferenceAction(data)));
+		}
+	}, [userLoggedIn]);
+
 	if (userLoggedIn) {
-		fetchUserPreference();
 		return null;
 	}
 

@@ -37,6 +37,7 @@ const FormInputComponent = ({
 				type={type}
 				name={name}
 				onChange={onChange}
+				checked={value}
 				value={value} />
 		</label>
 	);
