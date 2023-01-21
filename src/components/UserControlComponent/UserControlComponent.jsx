@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PopupDisplayComponent from '@common-components/PopupDisplayComponent';
 import LoginFormComponent from '@components/LoginFormComponent';
 import { refreshRequest, meRequest } from '@services/authentication-v2';
+import { fetchUserPreference } from '@services/terreplein-v2';
 import {
 	isUserLoggedIn,
 	userLoginAction,
@@ -31,6 +32,7 @@ const UserControlComponent = () => {
 	}, [dispatch, refreshTokens]);
 
 	if (userLoggedIn) {
+		fetchUserPreference();
 		return null;
 	}
 

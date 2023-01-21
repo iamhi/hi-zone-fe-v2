@@ -5,12 +5,16 @@ import FormComponent from '@common-components/FormComponent';
 import FeatureToggleFeedback from './FeatureToggleFeedback';
 import FeatureToggleReminders from './FeatureToggleReminders';
 
-const ApplicationSelectComponent = () => (
-	<FormComponent>
-		<FeatureToggleFeedback />
+const ApplicationSelectComponent = () => {
+	console.warn('Wow');
 
-		<FeatureToggleReminders />
-	</FormComponent>
-);
+	return (
+		<FormComponent>
+			<FeatureToggleFeedback />
+
+			<FeatureToggleReminders />
+		</FormComponent>
+	);
+};
 
 export default ApplicationSelectComponent;
