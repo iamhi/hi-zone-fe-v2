@@ -23,7 +23,6 @@ const FeatureToggleFeedback = ({
 	return (
 		<FormInputComponent
 			label="Toggle feedback feautre"
-			required
 			type="checkbox"
 			value={feedbackActivated}
 			onChange={onChangeAction}
