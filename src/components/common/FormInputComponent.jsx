@@ -12,6 +12,7 @@ const FormInputComponent = ({
 	label,
 	onChange = () => {},
 	invalidMessage = '',
+	checked,
 }) => {
 	const inputRef = useRef();
 
@@ -37,7 +38,7 @@ const FormInputComponent = ({
 				type={type}
 				name={name}
 				onChange={onChange}
-				checked={value}
+				checked={checked}
 				value={value} />
 		</label>
 	);
@@ -54,6 +55,7 @@ FormInputComponent.propTypes = {
 	label: PropTypes.string,
 	onChange: PropTypes.func,
 	invalidMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	checked: PropTypes.bool,
 };
 
 export default FormInputComponent;

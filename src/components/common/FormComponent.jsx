@@ -34,7 +34,7 @@ const FormComponent = ({
 };
 
 FormComponent.propTypes = {
-	onSubmit: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func,
 	children: PropTypes.node,
 	customCss: PropTypes.string,
 	formMessage: PropTypes.string,

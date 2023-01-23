@@ -24,7 +24,7 @@ const FeatureToggleFeedback = ({
 		<FormInputComponent
 			label="Toggle feedback feautre"
 			type="checkbox"
-			value={feedbackActivated}
+			checked={feedbackActivated}
 			onChange={onChangeAction}
 			customInputCss="form-checkbox-component__input"
 			customLabelCss="form-checkbox-component__label"
