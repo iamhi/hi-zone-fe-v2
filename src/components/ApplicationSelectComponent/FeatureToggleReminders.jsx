@@ -22,7 +22,7 @@ const FeatureToggleReminders = ({
 
 	return (
 		<FormInputComponent
-			label="Toggle feedback feautre"
+			label="Toggle Reminders feautre"
 			type="checkbox"
 			checked={remindersActivated}
 			onChange={onChangeAction}

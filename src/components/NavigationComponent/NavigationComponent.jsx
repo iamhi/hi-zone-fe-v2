@@ -9,15 +9,18 @@ import {
 } from '@page-components/constants';
 
 import NavigationItemComponent from './NavigationItemComponent';
+import FeedbackNavigationItemComponent from './FeedbackNavigationItemComponent';
+import RemindersNavigationItemComponent from './RemindersNavigationItemComponent';
 
 const NavigationComponent = () => {
 	const { pathname } = useLocation();
 	const isLogged = useSelector(selectUsername) !== '';
-
+	
 	const loggedRoutes = (
-		<NavigationItemComponent linkTo={SETTINGS_ROUTE} selected={pathname === SETTINGS_ROUTE}>
-			Settings
-		</NavigationItemComponent>
+		<>
+			<RemindersNavigationItemComponent pathname={pathname} />
+			<FeedbackNavigationItemComponent pathname={pathname} />
+		</>
 	);
 
 	return (
@@ -25,8 +28,12 @@ const NavigationComponent = () => {
 			<NavigationItemComponent linkTo={MAIN_ROUTE} selected={pathname === MAIN_ROUTE}>
 				Main
 			</NavigationItemComponent>
-
+	
 			{isLogged && loggedRoutes}
+		
+			<NavigationItemComponent linkTo={SETTINGS_ROUTE} selected={pathname === SETTINGS_ROUTE}>
+				Settings
+			</NavigationItemComponent>
 		</div>
 	);
 };
