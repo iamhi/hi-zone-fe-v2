@@ -6,6 +6,7 @@ import {
 import {
 	getSetUserPreferenceUrl,
 	getFetchUserPreferenceUrl,
+	getFeedbackUrl,
 } from './urls';
 
 export const setUserPreference = ({
@@ -17,3 +18,9 @@ export const setUserPreference = ({
 });
 
 export const fetchUserPreference = () => getCall(getFetchUserPreferenceUrl());
+
+export const sendFeedback = ({
+	content,
+}) => postCall(getFeedbackUrl(), {
+	content,
+});
