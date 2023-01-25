@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FormComponent from '@common-components/FormComponent';
-import ManagedFormInputComponent from '@common-components/FormInputComponent';
+import FormTextareaComponent from '@common-components/FormTextareaComponent';
 import FormSubmitComponent from '@common-components/FormSubmitComponent';
 import FormResetComponent from '@common-components/FormResetComponent';
 import FormButtonGroupComponent from '@common-components/FormButtonGroupComponent';
@@ -21,7 +21,7 @@ const SendFeedbackComponent = () => {
 
 	return (
 		<FormComponent onSubmit={onSubmit}>
-			<ManagedFormInputComponent
+			<FormTextareaComponent
 				label="Message:"
 				placeholder="I want a feature like..."
 				name="content" />
