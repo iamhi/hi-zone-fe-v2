@@ -40,7 +40,7 @@ const UserControlComponent = () => {
 				.then((response) => response.json())
 				.then((data) => dispatch(setUserPreferenceAction(data)));
 		}
-	}, [userLoggedIn]);
+	}, [userLoggedIn, dispatch]);
 
 	if (userLoggedIn) {
 		return null;

@@ -12,12 +12,12 @@ const RemindersListItemComponent = ({
 			{content}
 		</div>
 
-		<div className="reminders-list-item-component_type">
-			{type}
-		</div>
-
 		<div className="reminders-list-item-component__status">
 			{status}
+		</div>
+
+		<div className="reminders-list-item-component_type">
+			{type}
 		</div>
 
 		<div className="reminders-list-item-component_time">

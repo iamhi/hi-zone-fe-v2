@@ -1,0 +1,14 @@
+.reminders-list-item-component {
+	padding: 0.5em;
+	border: 1px solid var(--primary-color-1);
+	border-radius: 0.8em;
+	width: 90%;
+
+	@media(--at-medium) {
+		width: 45%;
+	}
+
+	@media(--at-larger) {
+		width: 30%;
+	}
+}

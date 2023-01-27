@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import FormComponent from '@common-components/FormComponent';
@@ -12,9 +12,9 @@ const ApplicationSelectComponent = () => {
 	const [shouldTriggerSave, setShouldTriggerSave] = useState(false);
 	const userPreference = useSelector(selectUserPreference);
 
-	const triggerSave = () => {
+	const triggerSave = useCallback(() => {
 		setUserPreference(userPreference);
-	};
+	}, [userPreference]);
 
 	const scheduleSave = () => {
 		setShouldTriggerSave(true);
@@ -26,7 +26,7 @@ const ApplicationSelectComponent = () => {
 
 			setShouldTriggerSave(false);
 		}
-	}, [shouldTriggerSave]);
+	}, [shouldTriggerSave, triggerSave]);
 
 	return (
 		<FormComponent>
