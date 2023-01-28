@@ -13,7 +13,7 @@ const DEFAULT_CREATE_DATA = {
 	location: 'unset',
 };
 
-const RemindersFormComponent = () => {
+const RemindersCreateFormComponent = () => {
 	const dispatch = useDispatch();
 
 	const onSubmitAction = (e) => {
@@ -43,4 +43,4 @@ const RemindersFormComponent = () => {
 	);
 };
 
-export default RemindersFormComponent;
+export default RemindersCreateFormComponent;
