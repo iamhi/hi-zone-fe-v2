@@ -4,22 +4,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import PopupDisplayComponent from '@common-components/PopupDisplayComponent';
 import ButtonComponent from '@common-components/ButtonComponent';
 import {
-	selectModelOpened,
-	setModalOpened,
+	selectCreateModalOpened,
+	setModalCreateOpenedAction,
 } from '@redux/slices/remindersSlice';
 
 import RemindersCreateFormComponent from './RemindersCreateFormComponent';
 
 const RemindersCreateButtonComponent = () => {
 	const dispatch = useDispatch();
-	const modelOpened = useSelector(selectModelOpened);
+	const modelOpened = useSelector(selectCreateModalOpened);
 
 	const closePopup = () => {
-		dispatch(setModalOpened(false));
+		dispatch(setModalCreateOpenedAction(false));
 	};
 
 	const onClickAction = () => {
-		dispatch(setModalOpened(true));
+		dispatch(setModalCreateOpenedAction(true));
 	};
 
 	return (

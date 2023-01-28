@@ -1,12 +1,28 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { selectRemindersData } from '@redux/slices/remindersSlice';
+import { completeReminder } from '@services/terreplein-v2';
+import {
+	selectRemindersData,
+	setModalViewDetailsOpenedAction,
+	completeReminderAction,
+} from '@redux/slices/remindersSlice';
 
 import RemindersListItemComponent from './RemindersListItemComponent';
 
 const RemindersListComponent = () => {
+	const dispatch = useDispatch();
 	const reminders = useSelector(selectRemindersData);
+
+	const onCompleteAction = (uuid) => () => {
+		completeReminder(uuid, { comment: 'unset', completeType: 'completed' })
+			.then((response) => response.json())
+			.then((data) => dispatch(completeReminderAction(data.uuid)));
+	};
+
+	const onViewDetailsAction = (uuid) => () => {
+		dispatch(setModalViewDetailsOpenedAction(uuid));
+	};
 
 	const reminderListItemComponents = reminders.map(({
 		uuid,
@@ -16,10 +32,13 @@ const RemindersListComponent = () => {
 		time,
 	}) => (
 		<RemindersListItemComponent
+			uuid={uuid}
 			content={content}
 			type={type}
 			status={status}
 			time={time}
+			onViewDetailsAction={onViewDetailsAction}
+			onCompleteAction={onCompleteAction}
 			key={uuid} />
 	));
 

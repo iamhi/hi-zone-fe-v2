@@ -1,6 +1,7 @@
 import {
 	getCall,
 	postCall,
+	putCall,
 } from '@services/shared/calls';
 
 import {
@@ -38,4 +39,13 @@ export const createReminder = ({
 	type,
 	time,
 	location,
+});
+
+export const completeReminder = (uuid, {
+	completeType,
+	comment,
+}) => putCall(`${getRemindersUrl()}/${uuid}/complete`, {
+	uuid,
+	completeType,
+	comment,
 });

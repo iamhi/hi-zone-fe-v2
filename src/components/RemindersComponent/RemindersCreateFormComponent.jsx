@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import FormComponent from '@common-components/FormComponent';
 import ManagedFormInputComponent from '@common-components/ManagedFormInputComponent';
 import FormSubmitComponent from '@common-components/FormSubmitComponent';
-import { setModalOpened, addReminderAction } from '@redux/slices/remindersSlice';
+import { setModalCreateOpenedAction, addReminderAction } from '@redux/slices/remindersSlice';
 import { createReminder } from '@services/terreplein-v2';
 
 const DEFAULT_CREATE_DATA = {
@@ -26,7 +26,7 @@ const RemindersCreateFormComponent = () => {
 			.then((response) => response.json())
 			.then((data) => dispatch(addReminderAction(data)));
 
-		dispatch(setModalOpened(false));
+		dispatch(setModalCreateOpenedAction(false));
 	};
 
 	return (

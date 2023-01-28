@@ -4,4 +4,5 @@ export {
 	sendFeedback,
 	fetchReminders,
 	createReminder,
+	completeReminder,
 } from './requests';
