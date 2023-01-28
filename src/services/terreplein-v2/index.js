@@ -3,4 +3,5 @@ export {
 	fetchUserPreference,
 	sendFeedback,
 	fetchReminders,
+	createReminder,
 } from './requests';

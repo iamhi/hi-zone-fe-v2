@@ -17,7 +17,7 @@ const remindersSlice = createSlice({
 		setModalOpened(state, action) {
 			state.modalOpened = action.payload;
 		},
-		addReminder(state, action) {
+		addReminderAction(state, action) {
 			state.data.push(action.payload);
 		},
 	},
@@ -26,7 +26,7 @@ const remindersSlice = createSlice({
 export const {
 	setRemindersDataAction,
 	setModalOpened,
-	addReminder,
+	addReminderAction,
 } = remindersSlice.actions;
 
 export const selectRemindersData = (state) => state.reminders.data;

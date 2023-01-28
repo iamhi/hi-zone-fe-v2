@@ -27,3 +27,15 @@ export const sendFeedback = ({
 });
 
 export const fetchReminders = () => getCall(getRemindersUrl());
+
+export const createReminder = ({
+	content,
+	type,
+	time,
+	location,
+}) => postCall(getRemindersUrl(), {
+	content,
+	type,
+	time,
+	location,
+});
