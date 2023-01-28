@@ -1,18 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-export const SCREEN = Object.freeze({
-	INITIAL: 'initial',
-	LISTING: 'listing',
-	CREATING: 'creating',
-	VIEWING: 'viewing',
-	EDITING: 'editing',
-});
-
 const initialState = Object.freeze({
 	selected: '',
 	data: [],
-	screen: SCREEN.INITIAL,
+	modalOpened: false,
 });
 
 const remindersSlice = createSlice({
@@ -22,16 +14,23 @@ const remindersSlice = createSlice({
 		setRemindersDataAction(state, action) {
 			state.data = action.payload;
 		},
-		setRemindersScreen(state, action) {
-			state.screen = action.payload;
+		setModalOpened(state, action) {
+			state.modalOpened = action.payload;
+		},
+		addReminder(state, action) {
+			state.data.push(action.payload);
 		},
 	},
 });
 
 export const {
 	setRemindersDataAction,
+	setModalOpened,
+	addReminder,
 } = remindersSlice.actions;
 
 export const selectRemindersData = (state) => state.reminders.data;
+
+export const selectModelOpened = (state) => state.reminders.modalOpened;
 
 export default remindersSlice.reducer;

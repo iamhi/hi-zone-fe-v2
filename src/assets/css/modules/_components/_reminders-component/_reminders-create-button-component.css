@@ -1,0 +1,12 @@
+.reminders-create-button-component {
+	background-color: var(--primary-color-3);
+	color: var(--primary-color-2);
+	font-weight: bold;
+	margin: auto;
+	margin-bottom: 1em;
+	width: 90%;
+
+	@media(--at-medium) {
+		width: 95%;
+	}
+}
