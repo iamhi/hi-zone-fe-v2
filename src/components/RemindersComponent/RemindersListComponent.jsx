@@ -9,6 +9,7 @@ import {
 } from '@redux/slices/remindersSlice';
 
 import RemindersListItemComponent from './RemindersListItemComponent';
+import ReminderDetailsComponent from './ReminderDetailsComponent';
 
 const RemindersListComponent = () => {
 	const dispatch = useDispatch();
@@ -43,9 +44,13 @@ const RemindersListComponent = () => {
 	));
 
 	return (
-		<div className="reminders-list-component">
-			{reminderListItemComponents}
-		</div>
+		<>
+			<div className="reminders-list-component">
+				{reminderListItemComponents}
+			</div>
+
+			<ReminderDetailsComponent />
+		</>
 	);
 };
 

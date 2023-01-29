@@ -11,4 +11,8 @@
 	@media(--at-larger) {
 		width: 30%;
 	}
+
+	&__actions {
+		display: flex;
+	}
 }
