@@ -1,0 +1,21 @@
+.reminder-details-component {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+
+	&__info-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+		border-bottom: 1px solid var(--primary-color-1);
+		padding-bottom: 0.5em;
+	}
+
+	&__complete-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+		border-bottom: 1px solid var(--primary-color-1);
+		padding-bottom: 0.5em;
+	}
+}

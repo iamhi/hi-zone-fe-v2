@@ -1,3 +1,4 @@
 @import '_reminders-list-component';
 @import '_reminders-list-item-component';
 @import '_reminders-create-button-component';
+@import '_reminder-details-component';

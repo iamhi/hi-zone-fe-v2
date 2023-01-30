@@ -33,33 +33,54 @@ const ReminderDetailsComponent = () => {
 
 	return (
 		<PopupDisplayComponent backgroundClick={closeViewDetailsAction}>
-			<div>
-				<div>
-					{content}
+			<div className="reminder-details-component">
+				<div className="reminder-details-component__info-section">
+					<div className="reminder-details-componentn__info-section__content">
+						{content}
+					</div>
+					<div className="reminder-details-componentn__info-section__time">
+						{`${type} ${time}`}
+					</div>
+					<div className="reminder-details-componentn__info-section__status">
+						{`Status: ${status}`}
+					</div>
+					{
+						location
+					!== (
+						<div className="reminder-details-componentn__info-section__location">
+							{`Location: ${location}`}
+						</div>
+					)
+					}
 				</div>
-				<div>
-					{`${type} ${time}`}
+
+				<div className="reminder-details-component__complete-section">
+					{
+						completeType !== 'incomplete'
+						&& (
+							<>
+								<div className="reminder-details-componenet__complete-section__complete-comment">
+									{completeComment}
+								</div>
+								<div className="reminder-details-componenet__complete-section__completed-at">
+									{`Completed at: ${completedAt}`}
+								</div>
+							</>
+						)
+					}
+					
+					<div className="reminder-details-componenet__complete-section__complete-type">
+						{completeType}
+					</div>
 				</div>
-				<div>
-					{`Status: ${status}`}
-				</div>
-				<div>
-					{completeType}
-				</div>
-				<div>
-					{completeComment}
-				</div>
-				<div>
-					{`CompletedAt: ${completedAt}`}
-				</div>
-				<div>
-					{`Location: ${location}`}
-				</div>
-				<div>
-					{`Created at: ${createdAt}`}
-				</div>
-				<div>
-					{`Updated at: ${updatedAt}`}
+				
+				<div className="reminder-details-component__date-section">
+					<div className="reminder-details-component__created-at">
+						{`Created at: ${createdAt}`}
+					</div>
+					<div className="reminder-details-component__updated-at">
+						{`Updated at: ${updatedAt}`}
+					</div>
 				</div>
 			</div>
 		</PopupDisplayComponent>
