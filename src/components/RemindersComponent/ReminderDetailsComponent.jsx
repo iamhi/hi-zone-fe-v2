@@ -31,6 +31,8 @@ const ReminderDetailsComponent = () => {
 		return null;
 	}
 
+	const shouldRenderLocation = location && (location !== 'null') && (location !== 'unset');
+
 	return (
 		<PopupDisplayComponent backgroundClick={closeViewDetailsAction}>
 			<div className="reminder-details-component">
@@ -45,12 +47,11 @@ const ReminderDetailsComponent = () => {
 						{`Status: ${status}`}
 					</div>
 					{
-						location
-					!== (
-						<div className="reminder-details-componentn__info-section__location">
-							{`Location: ${location}`}
-						</div>
-					)
+						shouldRenderLocation && (
+							<div className="reminder-details-componentn__info-section__location">
+								{`Location: ${location}`}
+							</div>
+						)
 					}
 				</div>
 

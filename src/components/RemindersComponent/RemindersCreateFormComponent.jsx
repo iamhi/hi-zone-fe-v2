@@ -21,8 +21,8 @@ const RemindersCreateFormComponent = () => {
 		
 		const formData = new FormData(e.target);
 		const requestData = Object.fromEntries(formData);
-		
-		createReminder({ ...requestData, ...DEFAULT_CREATE_DATA })
+
+		createReminder({ ...DEFAULT_CREATE_DATA, ...requestData })
 			.then((response) => response.json())
 			.then((data) => dispatch(addReminderAction(data)));
 
@@ -37,6 +37,10 @@ const RemindersCreateFormComponent = () => {
 					name="content"
 					required />
 
+				<ManagedFormInputComponent
+					label="Location:"
+					name="location"
+					required />
 				<FormSubmitComponent />
 			</FormComponent>
 		</div>
