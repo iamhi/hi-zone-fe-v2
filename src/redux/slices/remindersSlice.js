@@ -21,7 +21,7 @@ const remindersSlice = createSlice({
 		},
 
 		addReminderAction(state, action) {
-			state.data.push(action.payload);
+			state.data.unshift(action.payload);
 		},
 
 		setModalViewDetailsOpenedAction(state, action) {
