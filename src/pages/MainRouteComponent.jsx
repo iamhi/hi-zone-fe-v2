@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { selectUsername } from '@redux/slices/userDataSlice';
 
-const LOGGED_IN_TEXT = 'Welcome to Hi-zone-app.\n\nSelect application from the Navigation bar\n\nAdd new applications from the settings tab.';
+const LOGGED_IN_TEXT = 'Welcome to Hi-zone-app.\n\nSelect application from the Navigation bar.\n\nAdd new applications from the settings tab.';
 const LOADING_TEXT = 'loading';
 
 const AboutRouteComponent = () => {
