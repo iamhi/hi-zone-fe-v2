@@ -29,9 +29,11 @@ const remindersSlice = createSlice({
 		},
 
 		completeReminderAction(state, action) {
-			state.data = state.data.map((reminder) => (reminder.uuid === action.payload
+			const completedReminder = action.payload;
+			state.data = state.data.map((reminder) => (reminder.uuid === completedReminder.uuid
 				? {
 					...reminder,
+					...completedReminder,
 					status: 'done',
 				}
 				: reminder));

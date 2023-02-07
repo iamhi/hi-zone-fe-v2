@@ -18,7 +18,7 @@ const RemindersListComponent = () => {
 	const onCompleteAction = (uuid) => () => {
 		completeReminder(uuid, { comment: 'unset', completeType: 'completed' })
 			.then((response) => response.json())
-			.then((data) => dispatch(completeReminderAction(data.uuid)));
+			.then((data) => dispatch(completeReminderAction(data)));
 	};
 
 	const onViewDetailsAction = (uuid) => () => {
