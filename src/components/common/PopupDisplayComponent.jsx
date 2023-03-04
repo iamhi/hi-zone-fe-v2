@@ -2,10 +2,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PopupDisplayComponent = ({ children, backgroundClick = () => {} }) => (
-	<div className="popup-display-component">
-		<div className="popup-display-component__background" onClick={backgroundClick}>
-			<div className="popup-display-component__content" onClick={(e) => e.stopPropagation()}>
+const PopupDisplayComponent = ({
+	children,
+	backgroundClick = () => {},
+	customContainerCss,
+	customBackgroundCss,
+	customContentCss,
+}) => (
+	<div className={`popup-display-component ${customContainerCss}`}>
+		<div className={`popup-display-component__background ${customBackgroundCss}`} onClick={backgroundClick}>
+			<div className={`popup-display-component__content ${customContentCss}`} onClick={(e) => e.stopPropagation()}>
 				{children}
 			</div>
 		</div>
@@ -15,6 +21,9 @@ const PopupDisplayComponent = ({ children, backgroundClick = () => {} }) => (
 PopupDisplayComponent.propTypes = {
 	backgroundClick: PropTypes.func,
 	children: PropTypes.node,
+	customContainerCss: PropTypes.string,
+	customBackgroundCss: PropTypes.string,
+	customContentCss: PropTypes.string,
 };
 
 export default PopupDisplayComponent;

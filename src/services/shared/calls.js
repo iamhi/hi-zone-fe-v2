@@ -23,3 +23,12 @@ export const putCall = (url, body = {}) => fetch(url, {
 	credentials: 'include',
 	body: JSON.stringify(body),
 });
+
+export const deleteCall = (url, body = {}) => fetch(url, {
+	method: 'DELETE',
+	headers: {
+		'Content-Type': 'application/json;charset=utf-8',
+	},
+	credentials: 'include',
+	body: JSON.stringify(body),
+});

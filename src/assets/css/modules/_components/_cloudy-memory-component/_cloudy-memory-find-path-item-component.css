@@ -1,0 +1,12 @@
+.cloudy-memory-find-path-item-component {
+	display: flex;
+	padding-bottom: 0.5em;
+	flex: auto;
+	color: var(--primary-color-2);
+	border-bottom: 1px solid var(--primary-color-1);
+
+	&--selected {
+		font-weight: bold;
+		color: var(--primary-color-3);
+	}
+}

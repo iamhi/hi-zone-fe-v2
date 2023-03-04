@@ -9,12 +9,14 @@ import MainRouteComponent from '@page-components/MainRouteComponent';
 import SettingsRouteComponent from '@page-components/SettingsRouteComponent';
 import RemindersRouteComponent from '@page-components/RemindersRouteComponent';
 import FeedbackRouteComponent from '@page-components/FeedbackRouteComponent';
+import CloudyMemoryRouteComponent from '@page-components/CloudyMemoryRouteComponent';
 
 import {
 	MAIN_ROUTE,
 	SETTINGS_ROUTE,
 	REMINDERS_ROUTE,
 	FEEDBACK_ROUTE,
+	CLOUDY_MEMORY_ROUTE,
 } from './constants';
 
 const HomePageComponent = () => (
@@ -31,6 +33,7 @@ const HomePageComponent = () => (
 					<Route path={SETTINGS_ROUTE} element={<SettingsRouteComponent />} />
 					<Route path={REMINDERS_ROUTE} element={<RemindersRouteComponent />} />
 					<Route path={FEEDBACK_ROUTE} element={<FeedbackRouteComponent />} />
+					<Route path={CLOUDY_MEMORY_ROUTE} element={<CloudyMemoryRouteComponent />} />
 				</Routes>
 			</div>
 

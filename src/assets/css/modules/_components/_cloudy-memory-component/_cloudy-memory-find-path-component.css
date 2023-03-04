@@ -1,0 +1,11 @@
+.cloudy-memory-find-path-component {
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+	overflow-y: auto;
+
+	&__popup {
+		width: 75%;
+		height: 75%;
+	}
+}

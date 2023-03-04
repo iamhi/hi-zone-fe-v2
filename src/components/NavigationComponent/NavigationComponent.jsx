@@ -11,6 +11,7 @@ import {
 import NavigationItemComponent from './NavigationItemComponent';
 import FeedbackNavigationItemComponent from './FeedbackNavigationItemComponent';
 import RemindersNavigationItemComponent from './RemindersNavigationItemComponent';
+import CloudyMemoryNavigationItemComponent from './CloudyMemoryNavigationItemComponent';
 
 const NavigationComponent = () => {
 	const { pathname } = useLocation();
@@ -20,6 +21,7 @@ const NavigationComponent = () => {
 		<>
 			<RemindersNavigationItemComponent pathname={pathname} />
 			<FeedbackNavigationItemComponent pathname={pathname} />
+			<CloudyMemoryNavigationItemComponent pathname={pathname} />
 		</>
 	);
 

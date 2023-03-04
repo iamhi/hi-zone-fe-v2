@@ -7,6 +7,7 @@ import { setUserPreference } from '@services/terreplein-v2';
 
 import FeatureToggleFeedback from './FeatureToggleFeedback';
 import FeatureToggleReminders from './FeatureToggleReminders';
+import FeatureToggleCloudyMemory from './FeatureToggleCloudyMemory';
 
 const ApplicationSelectComponent = () => {
 	const [shouldTriggerSave, setShouldTriggerSave] = useState(false);
@@ -33,6 +34,8 @@ const ApplicationSelectComponent = () => {
 			<FeatureToggleFeedback scheduleSave={scheduleSave} />
 
 			<FeatureToggleReminders scheduleSave={scheduleSave} />
+
+			<FeatureToggleCloudyMemory scheduleSave={scheduleSave} />
 		</FormComponent>
 	);
 };

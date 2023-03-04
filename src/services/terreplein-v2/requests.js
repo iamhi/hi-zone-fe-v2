@@ -14,9 +14,11 @@ import {
 export const setUserPreference = ({
 	feedbackActivated,
 	remindersActivated,
+	cloudyMemoryActivated,
 }) => postCall(getSetUserPreferenceUrl(), {
 	feedbackActivated,
 	remindersActivated,
+	cloudyMemoryActivated,
 });
 
 export const fetchUserPreference = () => getCall(getFetchUserPreferenceUrl());
