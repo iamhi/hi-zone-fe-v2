@@ -31,6 +31,14 @@ class RunAfterCompile {
 				console.error(err);
 			}
 		});
+
+		compiler.hooks.done.tap('Copy static files', () => {
+			try {
+				fse.copySync('./static', './dist');
+			} catch (err) {
+				console.error(err);
+			}
+		});
 	}
 }
 
@@ -71,7 +79,7 @@ const config = {
 	},
 };
 
-if (currentTask == 'dev') {
+if (currentTask === 'dev') {
 	cssConfig.use.unshift('style-loader');
 
 	config.devServer = {
@@ -109,7 +117,7 @@ if (currentTask == 'dev') {
 	}));
 }
 
-if (currentTask == 'build' || currentTask === 'develop-build') {
+if (currentTask === 'build' || currentTask === 'develop-build') {
 	cssConfig.use.unshift(MiniCssExtractPlugin.loader);
 	config.output = {
 		filename: '[name].[chunkhash].js',

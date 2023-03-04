@@ -53,8 +53,8 @@ export const selectRemindersData = (state) => state.reminders.data;
 
 export const selectCreateModalOpened = (state) => state.reminders.createModalOpened;
 
-export const selectViewReminderDetails = (state) =>
-	state.reminders.data.find((reminder) =>
-		reminder.uuid === state.reminders.viewDetailsModalOpened) || {};
+export const selectViewReminderDetails = (state) => state.reminders.data.find(
+	(reminder) => reminder.uuid === state.reminders.viewDetailsModalOpened
+) || {};
 
 export default remindersSlice.reducer;
