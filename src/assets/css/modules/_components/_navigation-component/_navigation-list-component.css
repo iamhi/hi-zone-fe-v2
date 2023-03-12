@@ -4,4 +4,10 @@
 	flex-direction: column;
 
 	background-color: var(--background-color);
+	
+	@media(--at-medium) {
+		margin: 0.5em;
+		margin-left: 1em;
+		flex-direction: row;
+	}
 }

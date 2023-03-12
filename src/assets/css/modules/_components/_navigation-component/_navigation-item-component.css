@@ -17,4 +17,8 @@
 	&:hover {
 		color: var(--primary-color-3);
 	}
+	
+	@media(--at-medium) {
+		margin-top: 0.5em;
+	}
 }
