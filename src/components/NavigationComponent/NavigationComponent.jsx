@@ -43,7 +43,7 @@ const NavigationComponent = () => {
 			</div>
 
 			<div className="navigation-component navigation-component--desktop">
-				<NavigationListComponent hideMenuAction={hideMenuAction} showList={showList} />
+				<NavigationListComponent hideMenuAction={() => {}} showList />
 			</div>
 		</>
 	);
