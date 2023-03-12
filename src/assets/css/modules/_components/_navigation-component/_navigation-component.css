@@ -1,8 +1,31 @@
 .navigation-component {
 	border: 1px solid var(--primary-color-3);
-	padding: 1em;
 	border-radius: 0.8em;
 	margin-top: 1em;
 	margin-bottom: 1em;
 	user-select: none;
+	display: flex;
+	flex-direction: row;
+
+	&__current-path {
+		padding-left: 1em;
+		font-size: 1.2em;
+		font-weight: bold;
+		display: flex;
+		flex: auto;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__toggle-button {
+		display: flex;
+		transition: color 0.3s ease-in-out,
+								border-color 0.3s ease-in-out,
+								background-color 0.3s ease-in-out;
+
+		&--active {
+			color: var(--primary-color-3);
+			background-color: var(--primary-color-2);
+		}
+	}
 }
