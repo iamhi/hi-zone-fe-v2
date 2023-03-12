@@ -28,4 +28,18 @@
 			background-color: var(--primary-color-2);
 		}
 	}
+
+	&--desktop {
+		display: none;
+	}
+
+	@media(--at-medium) {
+		&--desktop {
+			display: flex;
+		}
+
+		&--mobile {
+			display: none;
+		}
+	}
 }
