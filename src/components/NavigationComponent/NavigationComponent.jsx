@@ -1,41 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-import { selectUsername } from '@redux/slices/userDataSlice';
-import {
-	MAIN_ROUTE,
-	SETTINGS_ROUTE,
-} from '@page-components/constants';
+import ButtonComponent from '@common-components/ButtonComponent';
+import PopupDisplayComponent from '@common-components/PopupDisplayComponent';
 
-import NavigationItemComponent from './NavigationItemComponent';
-import FeedbackNavigationItemComponent from './FeedbackNavigationItemComponent';
-import RemindersNavigationItemComponent from './RemindersNavigationItemComponent';
-import CloudyMemoryNavigationItemComponent from './CloudyMemoryNavigationItemComponent';
+import NavigationListComponent from './NavigationListComponent';
 
 const NavigationComponent = () => {
+	const [showList, setShowList] = useState(false);
 	const { pathname } = useLocation();
-	const isLogged = useSelector(selectUsername) !== '';
-	
-	const loggedRoutes = (
-		<>
-			<RemindersNavigationItemComponent pathname={pathname} />
-			<FeedbackNavigationItemComponent pathname={pathname} />
-			<CloudyMemoryNavigationItemComponent pathname={pathname} />
-		</>
-	);
+
+	const showMenuAction = () => {
+		setShowList(true);
+	};
+
+	const hideMenuAction = () => {
+		setShowList(false);
+	};
 
 	return (
 		<div className="navigation-component">
-			<NavigationItemComponent linkTo={MAIN_ROUTE} selected={pathname === MAIN_ROUTE}>
-				Main
-			</NavigationItemComponent>
-	
-			{isLogged && loggedRoutes}
-		
-			<NavigationItemComponent linkTo={SETTINGS_ROUTE} selected={pathname === SETTINGS_ROUTE}>
-				Settings
-			</NavigationItemComponent>
+			<div className="navigation-component__current-path">
+				{pathname}
+			</div>
+			<ButtonComponent
+				onClick={showMenuAction}
+				customCss={classNames('navigation-component__toggle-button', {
+					'navigation-component__toggle-button--active': showList,
+				})}>
+				<i className="fa-solid fa-bars"></i>
+			</ButtonComponent>
+
+			{
+				showList && (
+					<PopupDisplayComponent backgroundClick={hideMenuAction}>
+						<NavigationListComponent hideMenuAction={hideMenuAction} showList={showList} />
+					</PopupDisplayComponent>
+				)
+			}
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PopupDisplayComponent from '@common-components/PopupDisplayComponent';
@@ -20,6 +20,7 @@ const UserControlComponent = () => {
 	const dispatch = useDispatch();
 	const userLoggedIn = useSelector(isUserLoggedIn);
 	const refreshTokens = useSelector(shouldRefresh);
+	const [initialLoginAttempt, setInitialLoginAttempt] = useState(false);
 	// Create a timer that checks if the access token is still valid
 	// Or request new tokens every 15 mins
 	useEffect(() => {
@@ -29,7 +30,8 @@ const UserControlComponent = () => {
 			refreshRequest().then((_) => {
 				meRequest()
 					.then((response) => response.json())
-					.then((data) => dispatch(userLoginAction(data)));
+					.then((data) => dispatch(userLoginAction(data)))
+					.catch((__) => setInitialLoginAttempt(true));
 			}).catch((_) => dispatch(userLogoutAction()));
 		}
 	}, [dispatch, refreshTokens]);
@@ -42,7 +44,7 @@ const UserControlComponent = () => {
 		}
 	}, [userLoggedIn, dispatch]);
 
-	if (userLoggedIn) {
+	if (userLoggedIn || !initialLoginAttempt) {
 		return null;
 	}
 
