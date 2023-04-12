@@ -23,6 +23,9 @@ const UserControlComponent = () => {
 	const [initialLoginAttempt, setInitialLoginAttempt] = useState(false);
 	// Create a timer that checks if the access token is still valid
 	// Or request new tokens every 15 mins
+
+	console.warn({ userLoggedIn, initialLoginAttempt });
+
 	useEffect(() => {
 		if (refreshTokens) {
 			dispatch(setRefreshAction(false));
@@ -30,9 +33,9 @@ const UserControlComponent = () => {
 			refreshRequest().then((_) => {
 				meRequest()
 					.then((response) => response.json())
-					.then((data) => dispatch(userLoginAction(data)))
-					.catch((__) => setInitialLoginAttempt(true));
-			}).catch((_) => dispatch(userLogoutAction()));
+					.then((data) => dispatch(userLoginAction(data)));
+			}).catch((_) => dispatch(userLogoutAction()))
+				.finally((__) => setInitialLoginAttempt(true));
 		}
 	}, [dispatch, refreshTokens]);
 
