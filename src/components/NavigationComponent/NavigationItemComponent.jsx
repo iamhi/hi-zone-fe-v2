@@ -13,7 +13,6 @@ const NavigationItemComponent = ({
 		className={classNames('navigation-item-component', { 'navigation-item-component--selected': selected })}>
 		{children}
 	</Link>
-
 );
 
 NavigationItemComponent.propTypes = {

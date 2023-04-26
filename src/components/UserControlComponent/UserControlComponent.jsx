@@ -21,10 +21,9 @@ const UserControlComponent = () => {
 	const userLoggedIn = useSelector(isUserLoggedIn);
 	const refreshTokens = useSelector(shouldRefresh);
 	const [initialLoginAttempt, setInitialLoginAttempt] = useState(false);
+
 	// Create a timer that checks if the access token is still valid
 	// Or request new tokens every 15 mins
-
-	console.warn({ userLoggedIn, initialLoginAttempt });
 
 	useEffect(() => {
 		if (refreshTokens) {
